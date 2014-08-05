@@ -65,7 +65,6 @@ public class Board {
                         slots[x][line] = new Tile(x, line);
                         did = true;
                     }
-                    
                 }
                 break;
             case RIGHT:
@@ -78,20 +77,20 @@ public class Board {
                     }
                 }
                 break;
-            case DOWN:
-                p = start + 1;
-                for (int y = start; y >= 0; y--){
-                    if (slots[line][y].isNonEmpty() && --p != y){
+            case UP:
+                p = start - 1;
+                for (int y = start; y < size; y++){
+                    if (slots[line][y].isNonEmpty() && ++p != y){
                         slots[line][p] = slots[line][y];
                         slots[line][y] = new Tile(line, y);
                         did = true;
                     }
                 }
                 break;
-            case UP:
-                p = start - 1;
-                for (int y = start; y < size; y++){
-                    if (slots[line][y].isNonEmpty() && ++p != y){
+            case DOWN:
+                p = start + 1;
+                for (int y = start; y >= 0; y--){
+                    if (slots[line][y].isNonEmpty() && --p != y){
                         slots[line][p] = slots[line][y];
                         slots[line][y] = new Tile(line, y);
                         did = true;
@@ -177,7 +176,7 @@ public class Board {
         return did;
     }
 
-    public List<Pair> moveAndGetShiftedTiles(int dir){
+    /*public List<Pair> moveAndGetShiftedTiles(int dir){
         boolean did = moveWithoutFixing(dir);
         if (!did){
             return new ArrayList<Pair>();
@@ -192,7 +191,7 @@ public class Board {
         }
         fixTiles();
         return tiles;
-    }
+    }*/
     
     /*public void bubble(int dir){
         for (int line = 0; line < 4; line++){
